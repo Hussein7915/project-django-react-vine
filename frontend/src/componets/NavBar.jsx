@@ -12,16 +12,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import HomeIcon from '@mui/icons-material/Home';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import InfoIcon from '@mui/icons-material/Info';
 
-const drawerWidth = 240;
 
 function NavBar(props) {
-  const { window } = props;
+  const { window, drawerWidth, content } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const location = useLocation()
@@ -48,7 +48,7 @@ function NavBar(props) {
       <Divider />
       <List>
           <ListItem disablePadding>
-            <ListItemButton component={Link} to='' selected={'' === path} >
+            <ListItemButton component={Link} to='' selected={'/' === path} >
               <ListItemIcon>
                 <HomeIcon/>
               </ListItemIcon>
@@ -59,7 +59,7 @@ function NavBar(props) {
           <ListItem disablePadding>
             <ListItemButton component={Link} to='/create' selected={'/create' === path} >
               <ListItemIcon>
-                <HomeIcon/>
+                <AddCircleOutlineIcon/>
               </ListItemIcon>
               <ListItemText primary={"Create"} />
             </ListItemButton>
@@ -68,7 +68,7 @@ function NavBar(props) {
           <ListItem disablePadding>
             <ListItemButton component={Link} to='/about' selected={'/about' === path} >
               <ListItemIcon>
-                <HomeIcon/>
+                <InfoIcon/>
               </ListItemIcon>
               <ListItemText primary={"About"} />
             </ListItemButton>
@@ -101,7 +101,7 @@ function NavBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            My Application
           </Typography>
         </Toolbar>
       </AppBar>
@@ -143,6 +143,9 @@ function NavBar(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <Toolbar />
+
+        {content}
+
       </Box>
     </Box>
   );
